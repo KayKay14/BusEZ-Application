@@ -188,3 +188,17 @@ form .btn input[type="submit"]{
   font-weight: 500;
   cursor: pointer;
 }
+
+select{
+
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 15px;
+  border-radius: 15px;
+  border: 1px solid lightgrey;
+  border-bottom-width: 2px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+
+}
