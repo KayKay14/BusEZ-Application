@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>login signup form with html css javascript</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -21,7 +22,7 @@
           <div class="slider-tab"></div>
         </div>
         <div class="form-inner">
-          <form action="#" class="login">
+          <form action="login.php" method="POST" class="login">
             <pre>
             </pre>
             <div class="field">
@@ -33,28 +34,48 @@
             <div class="pass-link"><a href="#">Forgot password?</a></div>
             <div class="field btn">
               <div class="btn-layer"></div>
-              <input type="submit" value="Login">
+              <input type="submit" value="Login" name="submit">
             </div>
-            <div class="signup-link">Create an account <a href="">Signup now</a></div>
+            <div class="signup-link" style="color:#fff">Create an account <a href="">Signup now</a></div>
           </form>
-          <form action="#" class="signup">
+          <form action="signup.php" method="POST"  class="signup">
             <div class="field">
-              <input type="text" placeholder="Name" required>
+              <input type="text" placeholder="Firstname" required>
             </div>
+
+            <div class="field">
+              <input type="text" placeholder="Lastname" required>
+            </div>
+
             <div class="field">
               <input type="text" placeholder="Email Address" required>
             </div>
             <div class="field">
               <input type="password" placeholder="Password" required>
             </div>
+            
             <div class="field">
-              <input type="password" placeholder="Confirm password" required>
+              <input type="tel" placeholder="Phone-number" required>
             </div>
+            
+            <div class="field">
+              <select id="my-select" name="type of user" required>
+                <option value="owner">Bus Owner</option>
+                <option value="driver">Bus Driver</option>
+                <option value="conductor">Bus Conductor</option>
+                <option value="commuter">Commuter</option>
+
+                
+              </select>
+            </div>
+           
+                  
+
             <div class="field btn">
               <div class="btn-layer"></div>
-              <input type="submit" value="Signup">
+              <input type="submit" value="Signup" name="submit">
             </div>
-            <div class="signup-link">Already have an account? <a href="">Login</a></div>
+            <div class="signup-link" style="color:#fff">Already have an account? <a href="">Login</a></div>
           </form>
         </div>
       </div>

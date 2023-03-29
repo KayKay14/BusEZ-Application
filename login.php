@@ -1,19 +1,21 @@
 
 
 <?php
-  
-  
+    echo"<h1>runnig login php</h1>";
+  /*
     $email = $_POST['email'];  
     $password = $_POST['password'];  
+    $conn = mysqli_connect('localhost', 'root', '', 'BusEZdb');
+
 
     $email = stripcslashes($email);  
         $password = stripcslashes($password);  
-        $email = mysqli_real_escape_string($con, $email);  
-        $password = mysqli_real_escape_string($con, $password);  
+        $email = mysqli_real_escape_string($conn, $email);  
+        $password = mysqli_real_escape_string($conn, $password);  
 
 
         $sql = "select *from signup where email = '$email' and password = '$password'";  
-        $result = mysqli_query($con, $sql);  
+        $result = mysqli_query($conn, $sql);  
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
         $count = mysqli_num_rows($result);  
    
@@ -22,7 +24,9 @@
         }  
         else{  
             echo "<h1> Login failed. Invalid email or password.</h1>";  
-        }     
+        }  
+        
+        */
 ?>  
 
 
