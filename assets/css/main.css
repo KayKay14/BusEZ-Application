@@ -128,7 +128,7 @@ section {
 
 .breadcrumbs .page-header:before {
   content: "";
-  background-color: rgba(14, 29, 52, 0.8);
+  background-color: rgba(47, 63, 88, 0.8);
   position: absolute;
   inset: 0;
 }
@@ -297,9 +297,10 @@ section {
 }
 
 .header.sticked {
-  background: rgba(14, 29, 52, 0.9);
+  background: rgba(72, 119, 190, 0.9);
   padding: 15px 0;
   box-shadow: 0px 2px 20px rgba(14, 29, 52, 0.1);
+  
 }
 
 .header .logo img {
@@ -1411,6 +1412,7 @@ section {
 /*--------------------------------------------------------------
 # Get a Quote Section
 --------------------------------------------------------------*/
+/*
 .get-a-quote .quote-bg {
   min-height: 500px;
   background-size: cover;
@@ -1542,7 +1544,7 @@ section {
   100% {
     transform: rotate(360deg);
   }
-}
+}*/
 
 /*--------------------------------------------------------------
 # Contact Section
@@ -1949,6 +1951,3 @@ section {
   font-size: 13px;
 }
 
-.footer .credits a {
-  color: #fff;
-}
