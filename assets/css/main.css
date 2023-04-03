@@ -64,7 +64,7 @@ section {
   text-transform: uppercase;
   margin-bottom: 20px;
   padding-bottom: 0;
-  color: #001973;
+  color: #001252;
   position: relative;
   z-index: 2;
   margin-bottom: 20px;
@@ -176,7 +176,7 @@ section {
 .breadcrumbs nav ol li+li::before {
   display: inline-block;
   padding-right: 10px;
-  color: #4278cc;
+  color:var(--color-primary);
   content: "/";
 }
 
@@ -204,7 +204,7 @@ section {
 }
 
 .scroll-top:hover {
-  background: rgba(13, 66, 255, 0.8);
+  background: var(--color-primary);
   color: #fff;
 }
 
@@ -297,7 +297,7 @@ section {
 }
 
 .header.sticked {
-  background: rgba(72, 119, 190, 0.9);
+  background: rgba(12, 61, 135, 0.9);
   padding: 15px 0;
   box-shadow: 0px 2px 20px rgba(14, 29, 52, 0.1);
   
