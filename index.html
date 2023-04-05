@@ -159,26 +159,13 @@
                }
  
  
-             /*
-             directionsService = new google.maps.DirectionsService;
-             directionsDisplay = new google.maps.DirectionsRenderer;
-             directionsDisplay.setMap(map);
-             calculateAndDisplayRoute(directionsService, directionsDisplay);
-             */
- 
-             
-             /*
-             google.maps.event.addlistener(map, 'click',
-             function(event){
-                 addmarker({coords:event.latlng});
-             });
-             */
+
           
            let markerOptions = {
            position: new google.maps.LatLng(12.0482544, -61.746424),
            map: map,
            title: "THIS IS A MARKER",
-            draggable: false,
+           draggable: false,
            lable: "M",
            Animation: google.maps.Animation.DROP,
                         
@@ -189,6 +176,9 @@
            
        
          }
+
+
+         
      </script>
      
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZVg75dh21n5v6cv3Lqr88P7V27yBmkNw&callback=initMap">
@@ -204,23 +194,7 @@
     */
 
 
-    
 
-    /*
-    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-      directionsService.route({
-        origin: 'Grand Mal, Grenada',
-        destination: 'Cherry Hill, Grenada',
-        travelMode: 'DRIVING'
-      }, function(response, status) {
-        if (status === 'OK') {
-          directionsDisplay.setDirections(response);
-        } else {
-          window.alert('Directions request failed due to ' + status);
-        }
-      });
-    }
-    */
     </script>
 
 
