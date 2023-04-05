@@ -12,7 +12,7 @@
             height:700px;
             width:100%;
             margin:auto;
-        }
+        }*/
 
     </style>
     <!-- Favicons -->
@@ -41,8 +41,6 @@
 </head>
 
 
-
-
 <body onload="initMap()">
 
      <!-- ======= Header ======= -->
@@ -59,7 +57,7 @@
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         <nav id="navbar" class="navbar">
           <ul>
-            
+            <li><a href="#">Welcome</a></li>
             <li><a href="about.html">About us</a></li>
             <li><a href="services.html">Our Services</a></li>
             <li><a href="pricing.html">Bus Fares</a></li>
@@ -92,7 +90,7 @@
         <div class="row d-flex justify-content-center">
           <div class="col-lg-6 text-center">
             <h2>BusEZ</h2>
-            <p>Welcome to the home page of the application BusEZ. You can plan trips and see your live location on route tracking.</p>
+            <p>The Application BusEZ offers information on Grenada's buses. It enables bus and passenger users to map bus routes from their current position to their destination. Commuters can now search for the best trip choice for them by route, bus type, or destination.</p>
           </div>
         </div>
       </div>
@@ -106,15 +104,42 @@
       </div>
     </nav>
   </div><!-- End Breadcrumbs -->
-  
-  
-  <!--<h1>BusEz</h1>-->
-    <div id="map"></div>
+
+  <div id="floating-panel">
+    <b>Start: </b>
+    <select id="start">
+      <option value="Tanteen Tanteen Road, St George's, Grenada">Tamcc</option>
+      <option value="3732+23W, St George's, Grenada">Pizza Hut</option>
+      <option value="Melville Street, St George's, Grenada">St.George's Bus Terminal</option>
+      <option value="69F4+QHV, Sauteurs, Grenada">Sauteurs Bus Terminal</option>
+      <option value="49CG+6P4, Grenville, Grenada">Grenville Bus Terminal St. Andrews</option>
+      <option value="Maurice Bishop Memorial Highway, Grenada">Maurice Bishop International Airport</option>
+      <option value="26CQ+HGV, The Lime, Grenada">GSpiceland Mall</option>
+      <option value="362V+HX2, Melville Street, St George's, Grenada">Esplanade Shopping Complex</option>
+    </select>
+    <b>End: </b>
+    <select id="end">
+      <option value="3732+23W, St George's, Grenada">Pizza Hut</option>
+      <option value="Tanteen Tanteen Road, St George's, Grenada">Tamcc</option>
+      <option value="Melville Street, St George's, Grenada">St.George's Bus Terminal</option>
+      <option value="365W+XHV, St George's, Grenada">Kirani James Athletic Stadium</option>
+      <option value="365X+J43, Mt.Rush Road, St George's, Grenada">Grenada National Cricket Stadium</option>
+      <option value="36GX+M26, Grand Mal, Grenada">Grand Mal Rubis Gas Station</option>
+      <option value="Grand Anse Main Rd, The Lime, Grenada">Grand Anse Beach</option>
+      <option value="69F4+QHV, Sauteurs, Grenada">Sauteurs Bus Terminal</option>
+      <option value="698J+Q66, Sauteurs, Grenada">Welcome Stone</option>
+      <option value="49CG+6P4, Grenville, Grenada">Grenville Bus Terminal St. Andrews</option>
+    </select>
+  </div>
+  <div id="map"></div>
+  &nbsp;
+  <div id="warnings-panel"></div>
+
      <script>
          function initMap(){
              //central focus
              let mapOptions = {
-                 center: new google.maps.LatLng('12.048951', '-61.745967'),
+                 
                  zoom: 15
              }
              let map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -159,26 +184,139 @@
                }
  
  
-
-          
+             /*
+             directionsService = new google.maps.DirectionsService;
+             directionsDisplay = new google.maps.DirectionsRenderer;
+             directionsDisplay.setMap(map);
+             calculateAndDisplayRoute(directionsService, directionsDisplay);
+             */
+ 
+             
+             /*
+             google.maps.event.addlistener(map, 'click',
+             function(event){
+                 addmarker({coords:event.latlng});
+             });
+             */
+ 
            let markerOptions = {
            position: new google.maps.LatLng(12.0482544, -61.746424),
            map: map,
            title: "THIS IS A MARKER",
-           draggable: false,
+            draggable: false,
            lable: "M",
            Animation: google.maps.Animation.DROP,
                         
            }
  
            let marker = new google.maps.Marker(markerOptions)
-
-           
-       
+   
          }
 
 
-         
+  function initMap() {
+  const markerArray = [];
+  // Instantiate a directions service.
+  const directionsService = new google.maps.DirectionsService();
+  // Create a map and center it on Manhattan.
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 13,
+    center: { lat: 12.048951, lng: -61.745967 },
+  });
+  // Create a renderer for directions and bind it to the map.
+  const directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
+  // Instantiate an info window to hold step text.
+  const stepDisplay = new google.maps.InfoWindow();
+
+  // Display the route between the initial start and end selections.
+  calculateAndDisplayRoute(
+    directionsRenderer,
+    directionsService,
+    markerArray,
+    stepDisplay,
+    map
+  );
+
+  // Listen to change events from the start and end lists.
+  const onChangeHandler = function () {
+    calculateAndDisplayRoute(
+      directionsRenderer,
+      directionsService,
+      markerArray,
+      stepDisplay,
+      map
+    );
+  };
+
+  document.getElementById("start").addEventListener("change", onChangeHandler);
+  document.getElementById("end").addEventListener("change", onChangeHandler);
+}
+
+function calculateAndDisplayRoute(
+  directionsRenderer,
+  directionsService,
+  markerArray,
+  stepDisplay,
+  map
+) {
+  // First, remove any existing markers from the map.
+  for (let i = 0; i < markerArray.length; i++) {
+    markerArray[i].setMap(null);
+  }
+
+  // Retrieve the start and end locations and create a DirectionsRequest using
+  // DRIVING directions.
+  directionsService
+    .route({
+      origin: document.getElementById("start").value,
+      destination: document.getElementById("end").value,
+      travelMode: google.maps.TravelMode.DRIVING,
+    })
+    .then((result) => {
+      // Route the directions and pass the response to a function to create
+      // markers for each step.
+      document.getElementById("warnings-panel").innerHTML =
+        "<b>" + result.routes[0].warnings + "</b>";
+      directionsRenderer.setDirections(result);
+      showSteps(result, markerArray, stepDisplay, map);
+    })
+    .catch((e) => {
+      window.alert("Directions request failed due to " + e);
+    });
+}
+
+function showSteps(directionResult, markerArray, stepDisplay, map) {
+  // For each step, place a marker, and add the text to the marker's infowindow.
+  // Also attach the marker to an array so we can keep track of it and remove it
+  // when calculating new routes.
+  const myRoute = directionResult.routes[0].legs[0];
+
+  for (let i = 0; i < myRoute.steps.length; i++) {
+    const marker = (markerArray[i] =
+      markerArray[i] || new google.maps.Marker());
+
+    marker.setMap(map);
+    marker.setPosition(myRoute.steps[i].start_location);
+    attachInstructionText(
+      stepDisplay,
+      marker,
+      myRoute.steps[i].instructions,
+      map
+    );
+  }
+}
+
+function attachInstructionText(stepDisplay, marker, text, map) {
+  google.maps.event.addListener(marker, "click", () => {
+    // Open an info window when the marker is clicked on, containing the text
+    // of the step.
+    stepDisplay.setContent(text);
+    stepDisplay.open(map, marker);
+  });
+}
+
+window.initMap = initMap;
+
      </script>
      
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZVg75dh21n5v6cv3Lqr88P7V27yBmkNw&callback=initMap">
@@ -194,7 +332,23 @@
     */
 
 
+    
 
+    /*
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+      directionsService.route({
+        origin: 'Grand Mal, Grenada',
+        destination: 'Cherry Hill, Grenada',
+        travelMode: 'DRIVING'
+      }, function(response, status) {
+        if (status === 'OK') {
+          directionsDisplay.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+    }
+    */
     </script>
 
 
