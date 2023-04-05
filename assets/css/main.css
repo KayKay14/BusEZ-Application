@@ -1984,3 +1984,21 @@ section {
   line-height: 30px;
   padding-left: 10px;
 }
+
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+
+table{
+  width:100%;
+
+}
+
+
+.table-wrapper{
+
+  width:100%;
+  overflow-x: auto;
+}
